@@ -1,19 +1,24 @@
 function Stack() {
-  let data = [];
+  let data = {};
+  let counter = 0;
 
   function push(item) {
-    data.push(item);
+    data[counter] = item;
+    counter++;
   }
 
   function pop() {
-    return data.pop();
+    const value = data[counter - 1];
+    delete data[counter];
+    counter--;
+    return value;
   }
 
   function peek() {
-    return data[data.length - 1];
+    return data[counter - 1];
   }
 
-  return { push: push, pop: pop, peek: peek };
+  return { push, pop, peek };
 }
 
 module.exports = Stack;
